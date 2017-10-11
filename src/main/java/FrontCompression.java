@@ -40,12 +40,21 @@ public class FrontCompression {
         } else if (corpus.length() == 0) {
             return "";
         }
-
+        String[] splitedString = corpus.split("\n");
+        String temp = new String;
+        for (int i = 0; i < splitedString.length; i++) {            
+            if (i == 0){
+                temp.join("0, ", splitedString[i]);
+            } else {  
+                int prefix = longestPrefix(splitedString[i - 1], splitedString[i]);
+                temp.join("\n", prefix, splitedString.subString(prefix, splitedString[i].length));
+            }
+        }
         /*
          * Complete this function.
          */
 
-        return "";
+        return temp;
     }
 
     /**
@@ -82,7 +91,14 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
-        return 0;
+        int count = 0;
+        for (int i = 0; i < firstString.length; i++){
+            if (firstString.charAt(i) == secondString.charAt(i)) {
+                count++;   
+            }
+                
+        }
+        return count;
     }
 
     /**
